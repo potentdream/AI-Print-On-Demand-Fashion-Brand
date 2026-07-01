@@ -1,0 +1,15 @@
+# Node
+node_modules/
+npm-debug.log*
+.DS_Store
+
+# Large working/source art (keep briefs + notes, ignore heavy layered files)
+*.psd
+*.ai
+*.tiff
+*.zip
+
+# OS / editor
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,24 @@
+{
+  "name": "pod-fashion-brand-workflow",
+  "version": "1.0.0",
+  "description": "Automated workflow for bold, cheeky, feminine print-on-demand apparel designs.",
+  "type": "commonjs",
+  "private": true,
+  "scripts": {
+    "new-design": "node scripts/new-design.js",
+    "quote-variations": "node scripts/quote-variations.js",
+    "make-prompts": "node scripts/make-prompts.js",
+    "make-listing": "node scripts/make-listing.js",
+    "qc-check": "node scripts/qc-check.js",
+    "export-pack": "node scripts/export-pack.js"
+  },
+  "keywords": [
+    "print-on-demand",
+    "pod",
+    "fashion",
+    "apparel",
+    "automation",
+    "workflow"
+  ],
+  "license": "MIT"
+}
