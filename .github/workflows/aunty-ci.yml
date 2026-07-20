@@ -1,0 +1,48 @@
+name: aunty-ci
+
+on:
+  push:
+    paths:
+      - "aunty/**"
+      - ".github/workflows/aunty-ci.yml"
+  pull_request:
+    paths:
+      - "aunty/**"
+      - ".github/workflows/aunty-ci.yml"
+
+defaults:
+  run:
+    working-directory: aunty
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: aunty/pnpm-lock.yaml
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Test
+        run: pnpm test
+
+      - name: Build
+        run: pnpm build
+        env:
+          DEMO_MODE: "true"
