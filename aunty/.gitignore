@@ -43,3 +43,7 @@ next-env.d.ts
 # aunty demo-mode local data
 .demo-data/
 !.env.example
+
+# test artifacts
+test-results/
+playwright-report/
