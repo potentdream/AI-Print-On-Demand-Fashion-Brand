@@ -1,0 +1,7 @@
+node_modules
+.next
+public/fonts
+public/icons
+pnpm-lock.yaml
+app/fonts.css
+.demo-data

@@ -1,0 +1,149 @@
+@import "./fonts.css";
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   AUNTY design tokens — "The Matchmaking Bureau"
+   Stamp-pad ink, rani pink, turmeric, cool paper. Editorial, official, warm.
+   Canonical reference: aunty/CLAUDE.md → Design tokens.
+--------------------------------------------------------------------------- */
+
+:root {
+  /* raw palette */
+  --ink-950: #0d102e;
+  --ink-900: #141838;
+  --ink-800: #1b2153; /* stamp-pad ink — primary text on paper */
+  --ink-600: #3a4180;
+  --ink-300: #9ba1c9;
+  --ink-100: #e3e5f2;
+  --paper-0: #f6f5f1; /* cool paper white — page background */
+  --paper-1: #fffef9; /* raised card */
+  --paper-2: #edebe4; /* recessed */
+  --rani-600: #ad0f56;
+  --rani-500: #d6156c; /* rani pink — the action color */
+  --rani-300: #f03d8c;
+  --rani-100: #fbdcea;
+  --turmeric-600: #b06f0e; /* text-safe turmeric */
+  --turmeric-400: #e9a13b; /* decorative turmeric / foil */
+  --turmeric-100: #f9ecd2;
+  --mehndi-600: #33693f; /* verified / success */
+  --stamp-red: #b5301f; /* signage red — danger / expired stamps */
+
+  /* semantic (light) */
+  --bg: var(--paper-0);
+  --surface: var(--paper-1);
+  --surface-sunken: var(--paper-2);
+  --fg: var(--ink-800);
+  --fg-muted: var(--ink-600);
+  --fg-faint: var(--ink-300);
+  --line: color-mix(in oklab, var(--ink-800) 14%, transparent);
+  --accent: var(--rani-500);
+  --accent-strong: var(--rani-600);
+  --accent-soft: var(--rani-100);
+  --gold: var(--turmeric-400);
+  --gold-text: var(--turmeric-600);
+  --ok: var(--mehndi-600);
+  --danger: var(--stamp-red);
+  --on-accent: #fffef9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: var(--ink-950);
+    --surface: var(--ink-900);
+    --surface-sunken: #090b22;
+    --fg: #eceef8;
+    --fg-muted: #b6bbdd;
+    --fg-faint: #6d74a8;
+    --line: color-mix(in oklab, #eceef8 16%, transparent);
+    --accent: var(--rani-300);
+    --accent-strong: var(--rani-500);
+    --accent-soft: #3c1030;
+    --gold: var(--turmeric-400);
+    --gold-text: var(--turmeric-400);
+    --ok: #5da26b;
+    --danger: #e05a48;
+    --on-accent: #fffef9;
+  }
+}
+
+@theme inline {
+  --color-*: initial;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-sunken: var(--surface-sunken);
+  --color-fg: var(--fg);
+  --color-muted: var(--fg-muted);
+  --color-faint: var(--fg-faint);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-gold: var(--gold);
+  --color-gold-text: var(--gold-text);
+  --color-ok: var(--ok);
+  --color-danger: var(--danger);
+  --color-on-accent: var(--on-accent);
+  --color-white: #fff;
+  --color-black: #000;
+  --color-transparent: transparent;
+
+  --font-display: "Martel", "Anek Devanagari", "Anek Malayalam", Georgia, serif;
+  --font-sans:
+    "Anek Latin", "Anek Devanagari", "Anek Malayalam", system-ui, sans-serif;
+
+  --radius-ctl: 0.75rem; /* controls: inputs, buttons */
+  --radius-card: 1.125rem; /* cards */
+  --radius-stamp: 0.375rem; /* stamps, badges, chips */
+
+  --ease-thunk: cubic-bezier(0.2, 1.4, 0.3, 1); /* the verdict stamp */
+}
+
+/* base ---------------------------------------------------------------- */
+html {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* stamp label: condensed, letterspaced, official ----------------------- */
+.stamp-label {
+  font-stretch: 80%;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* the rubber stamp itself (verdicts, badges): pair with a color class --- */
+.stamp {
+  border: 2.5px solid currentColor;
+  border-radius: var(--radius-stamp);
+  padding: 0.2rem 0.6rem 0.1rem;
+  rotate: -4deg;
+  display: inline-block;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.85 0.15'/%3E%3C/filter%3E%3Crect width='120' height='40' fill='white' filter='url(%23g)'/%3E%3C/svg%3E");
+  mask-size: 120px 40px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
