@@ -2,6 +2,7 @@
 
 AI-matchmaker dating app for India. Full product spec: `SPEC.md`. Work state:
 `PROGRESS.md` (do the topmost unchecked item). Choices log: `DECISIONS.md`.
+Tool-agnostic entry point for any coding agent: `AGENTS.md`.
 
 **Session protocol:** read this file, `PROGRESS.md`, and the last ~10 entries of
 `DECISIONS.md` before writing code. Commit small + conventional
