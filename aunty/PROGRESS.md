@@ -24,7 +24,8 @@ deployed URL live _(pending human)_.
 
 ## Phase 1 — Identity & the first laugh
 
-- [ ] Landing page in full Aunty voice (3 sample roast cards, city waitlist)
+- [x] Landing page in full Aunty voice (3 sample verdict cards, city waitlist —
+      hero, bureau process, house rules, waitlist with 12 launch cities)
 - [ ] Provision Supabase project; wire Db seam + Supabase Auth or keep jose (log it)
 - [ ] MSG91 OTP provider behind the existing seam
 - [ ] Onboarding flow (SPEC 4.2): one question per screen, < 4 min
@@ -99,3 +100,8 @@ deployed URL live _(pending human)_.
 - **2026-07-20** — Phase 0 built: scaffold, tokens + fonts + Aunty mark, demo
   auth flow (landing → login → OTP → home), PWA basics, tests, CI, docs.
   Remaining: Vercel deploy (human). Next session: start Phase 1 landing page.
+- **2026-08-17** — Phase 1 started: full landing page in Aunty's voice, the
+  VerdictCard component (the signature bureau document), and the city waitlist
+  (12 cities + free text, hashed phones, duplicate-aware). 25 unit + 6 e2e
+  tests green. Next: Supabase provisioning (needs human credentials), then the
+  onboarding flow.

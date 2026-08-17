@@ -2,6 +2,34 @@
 
 Newest first. 3–5 lines each: what, why, what was rejected.
 
+## 2026-08-17 · The verdict card is a bureau document
+
+Anatomy locked: double rule border, letterhead ("The Matchmaking Bureau" +
+case number), the ruling in Martel display, subject line, "From the desk of
+Aunty" footer with her mark, and an inked stamp breaking the top-right frame.
+Tone lives in the stamp colour (gold roast / rani caution / mehndi approval),
+not in the card. Same anatomy will serve intro verdicts and share cards, so
+`VerdictCard` takes `caseNo/subject/line/stamp/stampTone` and nothing about
+layout. Rejected: score-first dashboard cards (numbers before voice).
+
+## 2026-08-17 · Landing page: proof over persuasion
+
+Structure: hero → "How the Bureau works" (3 steps) → Recent rulings (3 sample
+cards) → House rules → waitlist → footer. The house-rules block states the
+non-negotiables as promises in her voice (women-first, faith is a preference,
+encryption, 18+) because these are the actual differentiators vs Tinder and
+Shaadi. Sample roasts target bios and behaviour only, per SPEC 3.3 — each is
+publishable on Instagram unedited. Rejected: fake testimonials, fake counts.
+
+## 2026-08-17 · Waitlist stores hashed phones, no accounts
+
+Landing waitlist writes `{city, phone_hash, phone_masked}` only — same salted
+hash as auth, so a waitlister is not an account and cannot be joined back to a
+number. Duplicate submits return "already in the queue" rather than erroring.
+12 launch cities plus free text (capped 40 chars) to measure real demand.
+RLS-on table with zero client policies: server-only writes. Rejected: email
+capture (Indian users respond to SMS/WhatsApp), and storing raw numbers.
+
 ## 2026-07-20 · Aunty lives in `aunty/` inside this repo
 
 The session is scoped to `potentdream/AI-Print-On-Demand-Fashion-Brand`, which

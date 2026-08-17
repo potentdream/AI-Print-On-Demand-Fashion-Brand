@@ -41,6 +41,38 @@ test("full demo login flow", async ({ page }) => {
   await expect(page).toHaveURL(/\/$/);
 });
 
+test("landing shows three sample rulings and takes a waitlist signup", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(page.getByText(/recent rulings/i)).toBeVisible();
+  await expect(page.getByText(/case nº/i)).toHaveCount(3);
+  await expect(page.getByText(/needs supervision/i).first()).toBeVisible();
+
+  await page.getByRole("link", { name: /join the waitlist/i }).click();
+  await page.getByLabel(/your city/i).selectOption("Pune");
+  await page.getByLabel(/your number/i).fill("9812345678");
+  await page.getByRole("button", { name: "Hold my spot" }).click();
+  await expect(page.getByText(/in the queue/i)).toBeVisible();
+  await expect(page.getByText(/opens Pune/i)).toBeVisible();
+});
+
+test("duplicate waitlist signup gets the patience line", async ({ page }) => {
+  await page.goto("/");
+  await page.getByLabel(/your city/i).selectOption("Jaipur");
+  await page.getByLabel(/your number/i).fill("9812345679");
+  await page.getByRole("button", { name: "Hold my spot" }).click();
+  await expect(page.getByText(/in the queue/i)).toBeVisible();
+
+  // Full reload so the form resets — a same-URL hash goto would not re-render.
+  await page.reload();
+  await page.getByLabel(/your city/i).selectOption("Jaipur");
+  await page.getByLabel(/your number/i).fill("98123 45679");
+  await page.getByRole("button", { name: "Hold my spot" }).click();
+  await expect(page.getByText(/already in the queue/i)).toBeVisible();
+  await expect(page.getByText(/forgets nothing/i)).toBeVisible();
+});
+
 test("wrong OTP gets Aunty's correction", async ({ page }) => {
   await page.goto("/login");
   await page.getByLabel(/your number/i).fill("9876543211");
