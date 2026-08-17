@@ -2,7 +2,7 @@ import { isDemoMode } from "@/lib/env";
 import { demoDb } from "./demo-store";
 import type { Db } from "./types";
 
-export type { Db, User, UserState } from "./types";
+export type { Db, User, UserState, WaitlistEntry } from "./types";
 
 /**
  * The one place that decides which Db implementation the app talks to.

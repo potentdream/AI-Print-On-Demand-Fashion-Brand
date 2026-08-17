@@ -11,8 +11,22 @@ export type User = {
   createdAt: string;
 };
 
+export type WaitlistEntry = {
+  id: string;
+  city: string;
+  phoneHash: string;
+  phoneMasked: string;
+  createdAt: string;
+};
+
 export interface Db {
   findUserByPhoneHash(phoneHash: string): Promise<User | null>;
   createUser(input: { phoneHash: string; phoneMasked: string }): Promise<User>;
   getUser(id: string): Promise<User | null>;
+  findWaitlistByPhoneHash(phoneHash: string): Promise<WaitlistEntry | null>;
+  addWaitlistEntry(input: {
+    city: string;
+    phoneHash: string;
+    phoneMasked: string;
+  }): Promise<WaitlistEntry>;
 }
